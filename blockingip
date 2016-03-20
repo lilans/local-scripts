@@ -1,0 +1,14 @@
+#!/bin/bash
+
+a=$(date) && a=$(echo $a | awk '{print $4}' | awk -F: '{print $1}')
+
+a=$((a))
+
+if [[ $a -ge 5 && $a -le 21 ]]
+then
+    iptables -A INPUT -s vk.com -j DROP
+else
+    iptables -D INPUT -s vk.com -j DROP
+fi
+
+exit 0
